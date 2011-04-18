@@ -57,6 +57,8 @@ CPP_OPTIONS+=$(CPPFLAGS) $(shell $(LLVM_CONFIG) --cppflags) \
 	     -DGCC_MAJOR=$(GCC_MAJOR) -DGCC_MINOR=$(GCC_MINOR) \
 	     -I$(INCLUDE_DIR) -I$(GCC_PLUGIN_DIR)/include
 
+LD_OPTIONS+=-Wl,-e,_lazymain@12 -L $(GCC_PLUGIN_DIR)/lib -lcc1
+
 LD_OPTIONS+=$(shell $(LLVM_CONFIG) --ldflags) $(LDFLAGS)
 
 # NOTE: The following flags can only be used after TARGET_UTIL has been built.
